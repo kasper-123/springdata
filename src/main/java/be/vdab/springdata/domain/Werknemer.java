@@ -5,6 +5,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "werknemers")
+@NamedEntityGraph(name = "Werknemer.metFiliaal",attributeNodes = @NamedAttributeNode("filiaal"))
 public class Werknemer {
 
 @Id
@@ -13,8 +14,9 @@ public class Werknemer {
 private String voornaam;
 private String familienaam;
 @ManyToOne(fetch = FetchType.LAZY, optional = false)
-@JoinColumn(name = "filiaalId")
+@JoinColumn(name = "filiaalid")
 private Filiaal filiaal;
+
 
 
     public long getId() {
@@ -28,7 +30,7 @@ private Filiaal filiaal;
     public String getFamilienaam() {
         return familienaam;
     }
-   public Long getFiliaal2() {return filiaal.getId();}
+   public Long getFiliaalId() {return filiaal.getId();}
     public Filiaal getFiliaal() {return filiaal; }
 
     @Override
@@ -36,7 +38,7 @@ private Filiaal filiaal;
         if (this == o) return true;
         if (!(o instanceof Werknemer)) return false;
         Werknemer werknemer = (Werknemer) o;
-        return id == werknemer.id;
+        return getId() == werknemer.getId();
     }
 
     @Override

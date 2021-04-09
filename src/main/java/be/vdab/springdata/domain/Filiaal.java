@@ -1,7 +1,10 @@
 package be.vdab.springdata.domain;
 
+import jdk.dynalink.linker.LinkerServices;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -14,6 +17,7 @@ public class Filiaal {
     private String gemeente;
     private BigDecimal omzet;
 
+
     public Filiaal( String naam, String gemeente, BigDecimal omzet) {
 
         this.naam = naam;
@@ -22,6 +26,9 @@ public class Filiaal {
     }
     protected Filiaal(){}
 
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public long getId() {
         return id;
